@@ -4,25 +4,27 @@
 * 描述:
 */
 <template>
-  <div>
+  <div class='apps'>
     <x-header style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>用户注册</x-header>
     <div style='text-align: center'><img height='100' src="../../../static/register.png" alt=""></div>
     <div style='padding: 0 30px'>
       <group>
-        <x-input title="用户名：" placeholder="请输入手机号" v-model="useName">
+        <x-input title="用户名：" placeholder="请输入手机号" v-model="phoneNum" required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"  class="iconfont icon-yonghu"  ></i>
         </x-input>
-        <x-input title="密码：" placeholder='请输入密码' v-model="password">
+        <x-input title="密码：" type='password' placeholder='请输入密码' v-model="password" required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
+          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  ></i>
         </x-input>
-        <x-input title="密码：" placeholder='请再次输入密码' v-model="password">
+        <x-input title="密码：" placeholder='请再次输入密码' type='password' v-model="passwordAgin" required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
+          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  ></i>
         </x-input>
-        <x-input  title="验证码" placeholder='请输入验证码' v-model="num">
+        <x-input  title="验证码" placeholder='请输入验证码' v-model="verificationCode " required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>
           <img slot="right-full-height" src="https://ws1.sinaimg.cn/large/663d3650gy1fq684go3glj203m01hmwy.jpg">
         </x-input>
-        <x-input title="发送验证码" class="weui-vcode">
+        <x-input type='number' title="发送验证码" class="weui-vcode" v-model='phoneCode' required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont  icon-yanzhengma1"  ></i>
           <x-button slot="right" type="primary" mini>发送验证码</x-button>
         </x-input>
@@ -51,7 +53,13 @@
       },
         props: [],
         data() {
-            return {}
+            return {
+              phoneNum:"",
+              password:"",
+              passwordAgin:"",
+              verificationCode:"",
+              phoneCode:"",
+            }
         },
         mounted() {
 
@@ -68,5 +76,6 @@
     justify-content: space-between;
     margin-top: 20px;
   }
-  @header-arrow-color:#fff
+
+
 </style>
