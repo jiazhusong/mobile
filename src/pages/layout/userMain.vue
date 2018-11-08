@@ -17,7 +17,7 @@
             <cell is-link title="我的资料" icon-class='iconfont icon-yanzhengma' link="/myInfo">
               <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../../static/myinfo.png">
             </cell>
-            <cell is-link title="申请记录 " link="/component/tabbar-icon">
+            <cell is-link title="申请记录 " link='/applicationRecord'>
               <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../../static/applicationRecord.png">
             </cell>
             <cell is-link title="账单查询 " link="/component/tabbar-icon">

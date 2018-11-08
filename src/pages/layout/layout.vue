@@ -52,6 +52,7 @@
 
 <script>
   import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Swiper } from 'vux'
+
     export default {
         name: "layout",
         components: {

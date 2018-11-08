@@ -30,9 +30,33 @@
             </x-input>
             <x-input label-width='100' title='运营商密码：'  placeholder="请输入运营商密码" v-model="operatorPass">
             </x-input>
+            <!--<div style='padding-left: 15px;'>-->
+              <!--<span>身份证正面照</span>-->
+              <!--<input  type='file' >-->
+              <!--<uploader-->
+                <!--style='display: inline-block'-->
+                <!--:images="uploadObj.images"-->
+                <!--:handle-click="true"-->
+                <!--:show-header="false"-->
+                <!--:readonly="true"-->
+                <!--:upload-url="uploadObj.uploadUrl"-->
+                <!--name="img"-->
+                <!--:params="uploadObj.params"-->
+                <!--size="small"-->
+                <!--@add-image="addImageMethod"-->
+              <!--&gt;-->
+                <!--上传-->
+              <!--</uploader>-->
+            <!--</div>-->
+
             <x-input label-width='100' title='父亲姓名：'  placeholder="请输入父亲姓名" v-model="fatherName">
             </x-input>
             <x-input label-width='100' title='父亲电话：'  placeholder="请输入父亲电话" v-model="fatherPhone">
+            </x-input>
+
+            <x-input label-width='100' title='母亲姓名：'  placeholder="请输入母亲姓名" v-model="matherName">
+            </x-input>
+            <x-input label-width='100' title='母亲电话：'  placeholder="请输入母亲电话" v-model="matherPhone">
             </x-input>
             <x-input label-width='100' title='同学姓名：'  placeholder="请输入同学姓名" v-model="schoolmate">
             </x-input>
@@ -102,6 +126,7 @@
 
 <script>
   import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio  } from 'vux'
+  import Uploader from 'vux-uploader'
     export default {
         name: "myInfo",
         components: {
@@ -114,7 +139,8 @@
           TabbarItem,
           Tab,
           TabItem,
-          Radio
+          Radio,
+          Uploader,
         },
         props: [],
         data() {
@@ -132,6 +158,8 @@
               operatorPass:"",
               fatherName:"",
               fatherPhone:"",
+              matherName:"",
+              matherPhone:"",
               schoolmate:"",
               schoolPhone:"",
               maxHei:"",
@@ -145,11 +173,18 @@
               work:"",
               workAdrass:"",
               familyAdrass:"",
+              uploadObj:{
+                images:[{
+                  url:"http://pic.58pic.com/58pic/15/63/07/42Q58PIC42U_1024.jpg"
+                }],
+                uploadUrl:"",
+                params:{}
+              }
             }
         },
         mounted() {
-          console.log(document.body.clientHeight);
-          this.maxHei=document.body.clientHeight-160+"px"
+
+          this.maxHei=window.screen.height-160+"px"
         },
         methods: {
           onItemClick(value){
@@ -158,6 +193,9 @@
           },
           submitData(){
             console.log(this.$refs["realName"].valid);
+          },
+          addImageMethod(){
+
           }
         }
     }
