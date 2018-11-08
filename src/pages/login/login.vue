@@ -15,7 +15,7 @@
             <img slot="right-full-height" src="https://ws1.sinaimg.cn/large/663d3650gy1fq684go3glj203m01hmwy.jpg">
           </x-input>
          <div style='height:1px;background: #D9D9D9; '></div>
-          <x-button style='margin-top: 20px;' type="primary">登录</x-button>
+          <x-button style='margin-top: 20px;' type="primary" @click.native='loginFun'>登录</x-button>
         </group>
         <div class='parent-box'>
           <router-link  to='/register'>注册</router-link>
@@ -42,6 +42,14 @@
             password:"",
             num:""
           }
+      },
+      methods:{
+        loginFun(){
+          let vm=this;
+          vm.$router.push({
+            path:"/userlayout"
+          })
+        }
       }
     }
 </script>

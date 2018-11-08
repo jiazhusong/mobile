@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import login from '@/pages/login/login'
 import register from '@/pages/login/register'
 import resetpass from '@/pages/login/resetPassword'
-
+import userLayout from "@/pages/layout/userMain"
+import layout from "@/pages/layout/layout"
+import myInfo from "@/pages/info/myInfo"
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +24,22 @@ export default new Router({
       path:'/resetpass',
       name: 'resetpass',
       component: resetpass
+    },
+    {
+      path:'/userLayout',
+      name: 'userLayout',
+      component: userLayout
+    },
+    {
+      path:'/layout',
+      name: 'layout',
+      component: layout
+    },
+    {
+      path:'/myInfo',
+      name: 'myInfo',
+      component: myInfo
     }
+
   ]
 })
