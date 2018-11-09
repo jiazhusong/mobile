@@ -9,17 +9,17 @@
       <div style=''>
         <swiper :list="list" auto style="width:100%;margin:0 auto;" height="180px" dots-class="custom-bottom" dots-position="center"></swiper>
       </div>
-      <div style='padding: 30px'>
-        <div style='display: flex;justify-content: space-between;color: #fff;'>
-          <div :class='{"active":active==1}' style='width: 40%;background: #365F7D;height: 100px;text-align: center;' @click='applyFun(1)'>
-            <p style='margin-top: 20px;font-size: 18px'>申请额度</p>
+      <div style='padding: 20px 30px'>
+        <div style='color: #fff;'>
+          <div :class='{"active":active==1}' style='width: 100%;background: #365F7D;height: 80px;text-align: center;display: flex;align-items: baseline;justify-content: center;' @click='applyFun(1)'>
+            <p style='margin-top: 20px;font-size: 18px'>申请额度：</p>
             <div style='color: #ff9000;font-size: 28px'>
               <i  class='iconfont icon-qian-copy'></i>
               <span style='font-size: 28px'>1200</span>
             </div>
           </div>
-          <div :class='{"active":active==2}' style='width: 40%;background: #365F7D;height: 100px;text-align: center;' >
-            <p style='margin-top: 20px;font-size: 18px'>申请额度</p>
+          <div :class='{"active":active==2}' style='width: 100%;background: #365F7D;height: 80px;text-align: center;display: flex;align-items: baseline;justify-content: center;margin-top: 20px;' @click='applyFun(2)'>
+            <p style='margin-top: 20px;font-size: 18px'>申请额度：</p>
             <div style='color: #ff9000;font-size: 28px'>
               <i  class='iconfont icon-qian-copy'></i>
               <span style='font-size: 28px'>2400</span>
@@ -27,7 +27,7 @@
           </div>
         </div>
         <div>
-          <p style='color:rgb(25, 131, 173);line-height: 50px;margin-top:20px;'>借款期限：7天</p>
+          <p style='color:rgb(25, 131, 173);line-height: 50px;margin-top:10px;'>借款期限：7天</p>
         </div>
         <div>
           <x-button type='primary'>立即申请</x-button>

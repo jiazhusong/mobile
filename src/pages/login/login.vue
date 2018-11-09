@@ -2,6 +2,7 @@
     <div>
       <x-header style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>用户登录</x-header>
       <div style='text-align: center'><img src="../../../static/banana1.jpg" height='100' alt=""></div>
+      <div style='text-align: center'>香蕉派</div>
       <div style='padding: 0 30px'>
         <group>
           <x-input title="用户名：" placeholder="请输入用户名" v-model="useName">
