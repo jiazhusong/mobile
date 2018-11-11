@@ -74,7 +74,7 @@
             <!--<img slot="right-full-height" src="https://ws1.sinaimg.cn/large/663d3650gy1fq684go3glj203m01hmwy.jpg">-->
             <!--</x-input>-->
             <div style='height:1px;background: #D9D9D9; '></div>
-            <x-button style='margin-top: 20px;' @click.native='submitData' type="primary">保存</x-button>
+            <x-button style='margin-top: 20px;' @click.native='basicSubmit' type="primary" >保存</x-button>
           </group>
         </div>
         <div v-show='showNum==1' :style='{"max-height": maxHei}' style='overflow: auto'>
@@ -92,7 +92,7 @@
             <x-input label-width='100' title='淘宝密码：'  placeholder="请输入淘宝密码" v-model="taobaoPass">
             </x-input>
             <div style='height:1px;background: #D9D9D9; '></div>
-            <x-button style='margin-top: 20px;' type="primary">保存</x-button>
+            <x-button style='margin-top: 20px;' type="primary" @click.native='bankSubmit'>保存</x-button>
           </group>
         </div>
         <div v-show='showNum==2' :style='{"max-height": maxHei}' style='overflow: auto'>
@@ -105,7 +105,7 @@
             </x-input>
 
             <div style='height:1px;background: #D9D9D9; '></div>
-            <x-button style='margin-top: 20px;' type="primary">保存</x-button>
+            <x-button style='margin-top: 20px;' type="primary" @click.native='workSubmit'>保存</x-button>
           </group>
         </div>
       </div>
@@ -184,7 +184,18 @@
         },
         mounted() {
 
-          this.maxHei=window.screen.height-160+"px"
+          this.maxHei=window.screen.height-160+"px";
+         this.$api.get("api/user/basic","",function (data) {
+           if(data.code==0){
+
+           }
+         });
+         this.$api.get("api//user/bank","",function (data) {
+
+         });
+         this.$api.get("api/user/work","",function (data) {
+
+         })
         },
         methods: {
           onItemClick(value){
@@ -193,9 +204,37 @@
           },
           submitData(){
             console.log(this.$refs["realName"].valid);
+
+          },
+          basicSubmit(){
+            console.log(this.$refs["realName"].valid);
           },
           addImageMethod(){
 
+          },
+          bankSubmit(){
+            let vm=this;
+            vm.$api.post("api/user/bank",{
+              bankAccount: vm.bankNum,
+              "fhxx": vm.bankInfo,
+              "tbmm": vm.taobaoPass,
+              "tbzh": vm.taobaoNum,
+              "userId": 1,
+              "zfbmm": vm.alipayPass,
+              "zfbzh": vm.AlipayNum
+              } ,function (data) {
+
+              }
+            )
+          },
+          workSubmit(){
+            let vm=this;
+            vm.$api.post("api/user/work",{
+              familyAddress:vm.familyAdrass,
+              workAddress:vm.workAdrass,
+              workUnit:vm.work,
+              userId:1,
+            })
           }
         }
     }

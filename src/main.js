@@ -6,7 +6,9 @@ import router from './router'
 import App from './App'
 import Home from './components/HelloFromVux'
 FastClick.attach(document.body)
-
+import Api from './api/index.js';
+Vue.prototype.HOST='/api'
+Vue.prototype.$api = Api;
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

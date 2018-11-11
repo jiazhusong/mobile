@@ -44,12 +44,32 @@
             num:""
           }
       },
+      mounted(){
+
+        this.$api.get("api/system/kaptcha","",function (data) {
+          console.log(data);
+        })
+      },
       methods:{
-        loginFun(){
+        // http://39.105.80.106:9000/swagger-ui.html
+
+          loginFun(){
           let vm=this;
           vm.$router.push({
             path:"/userlayout"
           })
+            vm.$api.post("api/system/login",{
+              kaptcha:vm.num,
+              tel:vm.useName,
+             password:vm.password
+            },function (data) {
+              if(data.code==0){
+                vm.$router.push({
+                  path:"/userlayout"
+                })
+              }
+            })
+
         }
       }
     }

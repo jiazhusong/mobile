@@ -26,7 +26,7 @@
             <cell is-link title="修改密码 " link="/resetpass">
               <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../../static/editpass1.png">
             </cell>
-            <cell is-link title="退出登录 " link="/component/tabbar-icon">
+            <cell is-link title="退出登录 " @click.native="loginoutFun"  >
               <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../../static/outlogin.png">
 
             </cell>
@@ -67,7 +67,18 @@
         mounted() {
 
         },
-        methods: {}
+        methods: {
+          loginoutFun(){
+            let vm=this;
+            vm.$api.post("api/system/logout",{},function (data) {
+              if(data.code==0){
+                vm.$push({
+                  path:"/"
+                })
+              }
+            })
+          }
+        }
     }
 </script>
 

@@ -34,7 +34,7 @@
 
         </x-input>
         <div style='height:1px;background: #D9D9D9; '></div>
-        <x-button style='margin-top: 20px;' type="primary">确认</x-button>
+        <x-button style='margin-top: 20px;' type="primary" @click.native='editPassFun'>确认</x-button>
       </group>
       <!--<div class='parent-box'>-->
         <!--<router-link  to='/register'>注册</router-link>-->
@@ -67,9 +67,23 @@
             }
         },
         mounted() {
+          this.$api.get("api/user/info","",function (data) {
 
+          })
         },
-        methods: {}
+        methods: {
+          editPassFun(){
+            let vm=this;
+            vm.$api.put("api/user/info",{
+              kaptcha: vm.verificationCode,
+              realName: vm.useName,
+              tel: vm.phoneNum,
+              telCode: vm.phoneCode
+            },function (data) {
+
+            })
+          }
+        }
     }
 </script>
 
