@@ -5,15 +5,15 @@
       <div style='text-align: center'>香蕉派</div>
       <div style='padding: 0 30px'>
         <group>
-          <x-input title="用户名：" placeholder="请输入用户名" v-model="useName">
+          <x-input title="用户名：" placeholder="请输入用户名" v-model="useName" ref='useName' required>
             <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"  class="iconfont icon-yonghu"  ></i>
           </x-input>
-          <x-input title="密码：" placeholder='请输入密码' v-model="password">
+          <x-input title="密码：" placeholder='请输入密码' v-model="password" ref='password' required>
             <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
           </x-input>
-          <x-input  title="验证码" placeholder='请输入验证码' v-model="num">
+          <x-input  title="验证码" placeholder='请输入验证码' v-model="num" ref='num' required>
             <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>
-            <img slot="right-full-height" src="https://ws1.sinaimg.cn/large/663d3650gy1fq684go3glj203m01hmwy.jpg">
+            <img slot="right-full-height" @click='imgClick' :src="imgUrl">
           </x-input>
          <div style='height:1px;background: #D9D9D9; '></div>
           <x-button style='margin-top: 20px;' type="primary" @click.native='loginFun'>登录</x-button>
@@ -41,18 +41,19 @@
           return{
             useName:"",
             password:"",
-            num:""
+            num:"",
+            imgUrl:"http://39.105.80.106:9000/system/kaptcha"
           }
       },
       mounted(){
+        let vm=this;
 
-        this.$api.get("api/system/kaptcha","",function (data) {
-          console.log(data);
-        })
       },
       methods:{
         // http://39.105.80.106:9000/swagger-ui.html
-
+        imgClick(){
+          this.imgUrl="http://39.105.80.106:9000/system/kaptcha?"+Math.random()
+        },
           loginFun(){
           let vm=this;
           vm.$router.push({

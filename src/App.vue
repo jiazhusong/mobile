@@ -25,5 +25,8 @@ body {
     border:1px solid  #fff;
     border-width:1px 0 0 1px;
   }
+  /deep/.vux-x-input .weui-icon{
+    display: none;
+  }
 }
 </style>
