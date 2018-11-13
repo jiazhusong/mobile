@@ -16,19 +16,19 @@
         </div>
         <div v-show='showNum==0' :style='{"max-height": maxHei}' style='overflow: auto'>
           <group ref='groups'>
-            <x-input label-width='100' title='姓名：' required  ref='realName'  placeholder="请输入真实姓名" v-model="realName">
+            <x-input label-width='100' title='姓名：' required  ref='realName'  placeholder="请输入真实姓名" v-model="basicObj.realName">
             </x-input>
-            <x-input label-width='100' title='身份证号码：'  ref='realName'  placeholder="请输入身份证号码" v-model="idcard">
+            <x-input label-width='100' title='身份证号码：' required  ref='realName'  placeholder="请输入身份证号码" v-model="basicObj.idCart">
             </x-input>
-            <x-input label-width='100' title='QQ号码：'   placeholder="请输入QQ号码" v-model="qqNum">
+            <x-input label-width='100' title='QQ号码：' required   placeholder="请输入QQ号码" v-model="basicObj.qq">
             </x-input>
-            <x-input label-width='100' title='微信号码：'  placeholder="请输入微信号码" v-model="wxNum">
+            <x-input label-width='100' title='微信号码：' required  placeholder="请输入微信号码" v-model="basicObj.wechat">
             </x-input>
-            <x-input label-width='100' title='学信网账号：'  placeholder="请输入学信网账号" v-model="chsi">
+            <x-input label-width='100' title='学信网账号：' required  placeholder="请输入学信网账号" v-model="basicObj.xxwzh">
             </x-input>
-            <x-input label-width='100' title='学信网密码：'  placeholder="请输入学信网密码" v-model="chsiPass">
+            <x-input label-width='100' title='学信网密码：' required  placeholder="请输入学信网密码" v-model="basicObj.xxwmm">
             </x-input>
-            <x-input label-width='100' title='运营商密码：'  placeholder="请输入运营商密码" v-model="operatorPass">
+            <x-input label-width='100' title='运营商密码：' required  placeholder="请输入运营商密码" v-model="basicObj.yysmm">
             </x-input>
             <!--<div style='padding-left: 15px;'>-->
               <!--<span>身份证正面照</span>-->
@@ -49,18 +49,18 @@
               <!--</uploader>-->
             <!--</div>-->
 
-            <x-input label-width='100' title='父亲姓名：'  placeholder="请输入父亲姓名" v-model="fatherName">
+            <x-input label-width='100' title='父亲姓名：' required  placeholder="请输入父亲姓名" v-model="basicObj.fqxm">
             </x-input>
-            <x-input label-width='100' title='父亲电话：'  placeholder="请输入父亲电话" v-model="fatherPhone">
+            <x-input label-width='100' title='父亲电话：' required  placeholder="请输入父亲电话" v-model="basicObj.fqdh">
             </x-input>
 
-            <x-input label-width='100' title='母亲姓名：'  placeholder="请输入母亲姓名" v-model="matherName">
+            <x-input label-width='100' title='母亲姓名：'  required placeholder="请输入母亲姓名" v-model="basicObj.mqxm">
             </x-input>
-            <x-input label-width='100' title='母亲电话：'  placeholder="请输入母亲电话" v-model="matherPhone">
+            <x-input label-width='100' title='母亲电话：' required  placeholder="请输入母亲电话" v-model="basicObj.mqdh">
             </x-input>
-            <x-input label-width='100' title='同学姓名：'  placeholder="请输入同学姓名" v-model="schoolmate">
+            <x-input label-width='100' title='同学姓名：' required  placeholder="请输入同学姓名" v-model="basicObj.txxm">
             </x-input>
-            <x-input label-width='100' title='同学电话：'  placeholder="请输入同学电话" v-model="schoolPhone">
+            <x-input label-width='100' title='同学电话：' required  placeholder="请输入同学电话" v-model="basicObj.txdh">
             </x-input>
             <!--<div style='display: flex;border-top: 1px solid #D9D9D9;'>-->
             <!--<spans style='width: 100px;margin-left: 15px;'>性别：</spans>-->
@@ -79,17 +79,17 @@
         </div>
         <div v-show='showNum==1' :style='{"max-height": maxHei}' style='overflow: auto'>
           <group>
-            <x-input label-width='100' title='银行账号：'  placeholder="请输入银行账号" v-model="bankNum">
+            <x-input label-width='100' title='银行账号：'  required placeholder="请输入银行账号" v-model="bankObj.bankAccount">
             </x-input>
-            <x-input label-width='100' title='分行信息：'  placeholder="请输入分行信息" v-model="bankInfo">
+            <x-input label-width='100' title='分行信息：'  required placeholder="请输入分行信息" v-model="bankObj.fhxx">
             </x-input>
-            <x-input label-width='100' title='支付宝账号：'  placeholder="请输入支付宝账号" v-model="AlipayNum">
+            <x-input label-width='100' title='支付宝账号：' required  placeholder="请输入支付宝账号" v-model="bankObj.zfbzh">
             </x-input>
-            <x-input label-width='100' title='支付宝密码：'  placeholder="请输入支付宝密码" v-model="alipayPass">
+            <x-input label-width='100' title='支付宝密码：'  required placeholder="请输入支付宝密码" v-model="bankObj.zfbmm">
             </x-input>
-            <x-input label-width='100' title='淘宝账号：'  placeholder="请输入淘宝账号" v-model="taobaoNum">
+            <x-input label-width='100' title='淘宝账号：'  required placeholder="请输入淘宝账号" v-model="bankObj.tbzh">
             </x-input>
-            <x-input label-width='100' title='淘宝密码：'  placeholder="请输入淘宝密码" v-model="taobaoPass">
+            <x-input label-width='100' title='淘宝密码：' required  placeholder="请输入淘宝密码" v-model="bankObj.tbmm">
             </x-input>
             <div style='height:1px;background: #D9D9D9; '></div>
             <x-button style='margin-top: 20px;' type="primary" @click.native='bankSubmit'>保存</x-button>
@@ -97,11 +97,11 @@
         </div>
         <div v-show='showNum==2' :style='{"max-height": maxHei}' style='overflow: auto'>
           <group>
-            <x-input title='工作单位：'  placeholder="请输入工作单位" v-model="work">
+            <x-input title='工作单位：'  placeholder="请输入工作单位" required v-model="workObj.workUnit">
             </x-input>
-            <x-input title='单位地址：'  placeholder="请输入单位地址" v-model="workAdrass">
+            <x-input title='单位地址：'  placeholder="请输入单位地址" required v-model="workObj.workAddress">
             </x-input>
-            <x-input title='家庭地址：'  placeholder="请输入家庭地址" v-model="familyAdrass">
+            <x-input title='家庭地址：'  placeholder="请输入家庭地址" required v-model="workObj.familyAddress">
             </x-input>
 
             <div style='height:1px;background: #D9D9D9; '></div>
@@ -109,7 +109,10 @@
           </group>
         </div>
       </div>
-
+      <div v-transfer-dom>
+        <alert v-model="show"  @on-show="onShow" @on-hide="onHide"> {{msg}}</alert>
+      </div>
+      <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask text="操作成功" position="middle"></toast>
       <tabbar style='position: fixed'>
         <tabbar-item  link="/layout">
           <i slot="icon" class='iconfont icon-yemian-copy'></i>
@@ -125,10 +128,13 @@
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio  } from 'vux'
+  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio,Alert , TransferDomDirective as TransferDom ,Toast   } from 'vux'
   import Uploader from 'vux-uploader'
     export default {
         name: "myInfo",
+      directives: {
+        TransferDom
+      },
         components: {
           XInput,
           Group,
@@ -141,6 +147,8 @@
           TabItem,
           Radio,
           Uploader,
+          Alert,
+          Toast
         },
         props: [],
         data() {
@@ -149,93 +157,130 @@
               list: [{key: '1', value: '男'}, {key: '2', value: '女'}],
               sex:"1",
               age:"",
-              realName:"",
-              idcard:"",
-              qqNum:"",
-              wxNum:"",
-              chsi:"",
-              chsiPass:"",
-              operatorPass:"",
-              fatherName:"",
-              fatherPhone:"",
-              matherName:"",
-              matherPhone:"",
-              schoolmate:"",
-              schoolPhone:"",
+              show:false,
               maxHei:"",
+              showPositionValue:false,
+              msg:"",
+              basicObj:{
+                fqdh: "",
+                fqxm: "",
+                idCart: "",
+                mqdh: "",
+                mqxm: "",
+                qq: "",
+                realName: "",
+                txdh: "",
+                txxm: "",
+                wechat: "",
+                xxwmm: "",
+                xxwzh: "",
+                yysmm: ""
+              },
+              bankObj:{
+                bankAccount: "",
+                fhxx: "",
+                tbmm: "",
+                tbzh: "",
+                zfbmm: "",
+                zfbzh: ""
+              },
+              workObj:{
+                familyAddress: "",
+                workAddress: "",
+                workUnit: ""
+              },
 
-              bankNum:"",
-              bankInfo:"",
-              AlipayNum:"",
-              alipayPass:"",
-              taobaoNum:"",
-              taobaoPass:"",
-              work:"",
-              workAdrass:"",
-              familyAdrass:"",
               uploadObj:{
                 images:[{
                   url:"http://pic.58pic.com/58pic/15/63/07/42Q58PIC42U_1024.jpg"
                 }],
                 uploadUrl:"",
                 params:{}
-              }
+              },
+              userId:""
             }
         },
         mounted() {
-
-          this.maxHei=window.screen.height-160+"px";
-         this.$api.get("api/user/basic","",function (data) {
-           if(data.code==0){
+          let vm=this;
+          vm.maxHei=window.screen.height-160+"px";
+          vm.$api.get("api/user/info","",function ({data}) {
+            if(data.code==20){
+              vm.userId=data.data.id
+            }
+          });
+          vm.$api.get("api/user/basic","",function ({data}) {
+           if(data.code==20){
+             vm.basicObj=data.data
+           }else {
 
            }
          });
-         this.$api.get("api//user/bank","",function (data) {
+          vm.$api.get("api/user/bank","",function ({data}) {
+            if(data.code==20){
+              vm.bankObj=data.data
+            }else {
 
+            }
          });
-         this.$api.get("api/user/work","",function (data) {
+          vm.$api.get("api/user/work","",function ({data}) {
+            if(data.code==20){
+              vm.workObj=data.data
+            }else {
 
+            }
          })
         },
         methods: {
           onItemClick(value){
-            console.log(value);
             this.showNum=value;
           },
-          submitData(){
-            console.log(this.$refs["realName"].valid);
 
-          },
           basicSubmit(){
-            console.log(this.$refs["realName"].valid);
+            let vm=this;
+            vm.basicObj.userId=vm.userId;
+            vm.$api.post("api/user/basic",vm.basicObj,function ({data}) {
+              if(data.code==20){
+                vm.showPositionValue=true;
+              }else {
+                vm.show=true;
+                vm.msg=data.message
+              }
+            })
           },
           addImageMethod(){
 
           },
           bankSubmit(){
             let vm=this;
-            vm.$api.post("api/user/bank",{
-              bankAccount: vm.bankNum,
-              "fhxx": vm.bankInfo,
-              "tbmm": vm.taobaoPass,
-              "tbzh": vm.taobaoNum,
-              "userId": 1,
-              "zfbmm": vm.alipayPass,
-              "zfbzh": vm.AlipayNum
-              } ,function (data) {
-
+            vm.bankObj.userId=vm.userId;
+            vm.$api.post("api/user/bank",vm.bankObj,function ({data}) {
+              if(data.code==20){
+                vm.showPositionValue=true;
+              }else {
+                vm.show=true;
+                vm.msg=data.message
+              }
               }
             )
           },
           workSubmit(){
             let vm=this;
-            vm.$api.post("api/user/work",{
-              familyAddress:vm.familyAdrass,
-              workAddress:vm.workAdrass,
-              workUnit:vm.work,
-              userId:1,
+            vm.workObj.userId=vm.userId;
+            vm.$api.post("api/user/work",vm.workObj,function ({data}) {
+              if(data.code==20){
+                vm.showPositionValue=true;
+              }else {
+                vm.show=true;
+                vm.msg=data.message
+              }
             })
-          }
+          },
+          onHide () {
+            console.log('on hide')
+          },
+          onShow () {
+            console.log('on show')
+          },
         }
     }
 </script>

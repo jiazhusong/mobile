@@ -42,17 +42,21 @@
             useName:"",
             password:"",
             num:"",
-            imgUrl:"http://39.105.80.106:9000/system/kaptcha"
+            imgUrl:"api/system/kaptcha"
           }
       },
       mounted(){
         let vm=this;
-
+        // vm.$api.get("api/system/kaptcha",{responseType: 'arraybuffer'},function (data) {
+        //   console.log(data);
+        //   // vm.imgUrl =  'data:image/png;base64,' + btoa(
+        //   //   new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), ''))
+        // })
       },
       methods:{
         // http://39.105.80.106:9000/swagger-ui.html
         imgClick(){
-          this.imgUrl="http://39.105.80.106:9000/system/kaptcha?"+Math.random()
+          this.imgUrl="api/system/kaptcha?"+Math.random()
         },
           loginFun(){
           let vm=this;
@@ -63,10 +67,11 @@
               kaptcha:vm.num,
               tel:vm.useName,
              password:vm.password
-            },function (data) {
-              if(data.code==0){
+            },function ({data}) {
+              console.log(data);
+              if(data.code==20){
                 vm.$router.push({
-                  path:"/userlayout"
+                  path:"/userlayout",
                 })
               }
             })

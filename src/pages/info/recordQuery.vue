@@ -7,7 +7,8 @@
     <div>
       <x-header style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>申请记录</x-header>
       <div :style='{"height":maxHei}'>
-        <x-table :cell-bordered="false" style="background-color:#fff;">
+        <load-more v-if='tipShow' tip="正在加载中，请稍后..."></load-more>
+        <x-table  v-if='!tipShow' :cell-bordered="false" style="background-color:#fff;">
           <thead>
           <tr>
             <th>申请周期</th>
@@ -43,17 +44,34 @@
 </template>
 
 <script>
+  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio,XTable ,LoadMore } from 'vux'
     export default {
         name: "recordQuery",
-        components: {},
+        components: {
+          XInput,
+          Group,
+          XButton,
+          XHeader,
+          Cell,
+          Tabbar,
+          TabbarItem,
+          Tab,
+          TabItem,
+          Radio,
+          XTable,
+          LoadMore
+        },
         props: [],
         data() {
             return {
-              maxHei:""
+              maxHei:"",
+              tipShow:true
             }
         },
         mounted() {
-          this.maxHei=window.screen.height-100+"px"
+          let vm=this;
+          vm.maxHei=window.screen.height-100+"px";
+
         },
         methods: {}
     }

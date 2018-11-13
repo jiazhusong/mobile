@@ -30,7 +30,7 @@
           <p style='color:rgb(25, 131, 173);line-height: 50px;margin-top:10px;'>借款期限：7天</p>
         </div>
         <div>
-          <x-button type='primary'>立即申请</x-button>
+          <x-button type='primary' @click.native='appliyMoney'>立即申请</x-button>
         </div>
         <div style='margin-top: 20px;color: rgb(25, 131, 173)'>
           注：点击申请即表示您已同意用户条款和隐私条款，本平台不对在校大学生开放
@@ -47,14 +47,20 @@
         </tabbar-item>
 
       </tabbar>
+      <div v-transfer-dom>
+        <alert v-model="show"  @on-show="onShow" @on-hide="onHide"> {{msg}}</alert>
+      </div>
     </div>
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Swiper } from 'vux'
+  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Swiper,Alert,TransferDomDirective as TransferDom } from 'vux'
 
     export default {
         name: "layout",
+        directives: {
+          TransferDom
+       },
         components: {
           XInput,
           Group,
@@ -63,12 +69,15 @@
           Cell,
           Tabbar,
           TabbarItem,
-          Swiper
+          Swiper,
+          Alert
         },
         props: [],
         data() {
             return {
               active:1,
+              show:false,
+              msg:"",
               list:[{
                 url: 'javascript:',
                 img: 'http://pic29.nipic.com/20130511/9252150_174018365301_2.jpg',
@@ -83,7 +92,32 @@
         mounted() {
 
         },
-        methods: {}
+        methods: {
+          applyFun(value){
+            if(value==2){
+              this.show=true;
+              this.msg="暂不开放2400额度"
+            }
+          },
+          appliyMoney(){
+            let vm=this;
+            vm.$api.post("api/bill/loan/1200","",function ({data}) {
+              if(data.code==20){
+                vm.show=true;
+                vm.msg="申请成功"
+              }else {
+                vm.show=true;
+                vm.msg=data.message
+              }
+            })
+          },
+          onHide () {
+            console.log('on hide')
+          },
+          onShow () {
+            console.log('on show')
+          },
+        }
     }
 </script>
 

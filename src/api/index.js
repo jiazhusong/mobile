@@ -4,6 +4,7 @@
  * 描述:
  */
 import axios from 'axios';
+axios.defaults.withCredentials = true
 let http = axios.create({
   baseURL: 'http://localhost:8080/',
   withCredentials: true,

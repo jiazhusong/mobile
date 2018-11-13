@@ -10,7 +10,7 @@
         <div style='border: 1px solid #ccc;padding: 20px 10px;box-shadow:0 0 10px #ccc '>
           <img height='50' src="../../../static/user.png" alt="">
           <span style='vertical-align: top'>欢迎：</span>
-          <span style='vertical-align: top'>18235412158</span>
+          <span style='vertical-align: top'>{{account}}</span>
         </div>
         <div style='border: 1px solid #ccc'>
           <group>
@@ -62,16 +62,26 @@
         },
         props: [],
         data() {
-            return {}
+            return {
+              account:"",
+              userId:""
+            }
         },
         mounted() {
-
+          let vm=this;
+          this.$api.get("api/user/info","",function ({data}) {
+            if(data.code==20){
+              vm.userId=data.data.id;
+              vm.account=data.data.tel;
+            }
+          });
+          // vm.account=vm.$router.
         },
         methods: {
           loginoutFun(){
             let vm=this;
-            vm.$api.post("api/system/logout",{},function (data) {
-              if(data.code==0){
+            vm.$api.post("api/system/logout","",function ({data}) {
+              if(data.code==20){
                 vm.$push({
                   path:"/"
                 })

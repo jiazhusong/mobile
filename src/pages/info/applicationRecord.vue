@@ -7,7 +7,8 @@
   <div>
     <x-header style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>申请记录</x-header>
     <div :style='{"height":maxHei}' style='overflow: auto;margin-bottom: 60px; '>
-      <x-table :cell-bordered="false" style="background-color:#fff;">
+      <load-more v-if='tipShow' tip="正在加载中，请稍后..."></load-more>
+      <x-table v-if='!tipShow' :cell-bordered="false"  style="background-color:#fff;">
         <thead>
         <tr>
           <th>申请周期</th>
@@ -17,25 +18,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr v-for='item in datas'>
           <td>7天</td>
           <td>2018/11/08 16:36:43</td>
-          <td>待审核</td>
-          <td style='color: rgb(255, 144, 0)'>1200</td>
-        </tr>
-        <tr>
-          <td>7天</td>
-          <td>2018/11/08 16:36:43</td>
-          <td>通过</td>
+          <td>{{item.status|statusFun}}</td>
           <td style='color: rgb(255, 144, 0)'>1200</td>
         </tr>
 
-        <tr>
-          <td>8天</td>
-          <td>2018/11/08 16:36:43</td>
-          <td>结束</td>
-          <td style='color: rgb(255, 144, 0)'>1200</td>
-        </tr>
         </tbody>
       </x-table>
     </div>
@@ -55,7 +44,7 @@
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio,XTable  } from 'vux'
+  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio,XTable ,LoadMore } from 'vux'
 
   export default {
         name: "applicationRecord",
@@ -70,18 +59,46 @@
           Tab,
           TabItem,
           Radio,
-          XTable
+          XTable,
+          LoadMore
         },
         props: [],
+        filters:{
+          statusFun(value){
+            if(value=="PENDING"){
+              return "待审核"
+            }else if(value=="PASS"){
+              return "审核通过"
+            }else {
+              return "结束"
+            }
+          }
+        },
         data() {
             return {
-              maxHei:""
+              maxHei:"",
+              datas:[],
+              tipShow:true
             }
         },
         mounted() {
-          this.maxHei=window.screen.height-100+"px"
+          let vm=this;
+          vm.maxHei=window.screen.height-100+"px";
+          vm.$api.get("api/bill/loan/history",{
+            page:0,
+            size:50,
+          },function ({data}) {
+            vm.tipShow=false;
+            if(data.code==20){
+              vm.datas=data.data.list
+            }else {
+
+            }
+          })
         },
-        methods: {}
+        methods: {
+
+        }
     }
 </script>
 
