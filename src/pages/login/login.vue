@@ -8,7 +8,7 @@
           <x-input title="用户名：" placeholder="请输入用户名" v-model="useName" ref='useName' required>
             <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"  class="iconfont icon-yonghu"  ></i>
           </x-input>
-          <x-input title="密码：" placeholder='请输入密码' v-model="password" ref='password' required>
+          <x-input title="密码：" type='password' placeholder='请输入密码' v-model="password" ref='password' required>
             <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
           </x-input>
           <x-input  title="验证码" placeholder='请输入验证码' v-model="num" ref='num' required>
@@ -56,9 +56,9 @@
         },
           loginFun(){
           let vm=this;
-          vm.$router.push({
-            path:"/userlayout"
-          })
+          // vm.$router.push({
+          //   path:"/userlayout"
+          // })
             vm.$api.post("api/system/login",{
               kaptcha:vm.num,
               tel:vm.useName,
