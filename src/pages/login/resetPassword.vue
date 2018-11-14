@@ -73,7 +73,7 @@
               phoneCode:"",
               password:"",
               passwordAgin:"",
-              imgUrl:"api/system/kaptcha",
+              imgUrl:"api/system/code",
               codeBtn:"发送验证码",
               showPositionValue:false,
               popmsg:"",
@@ -82,14 +82,14 @@
             }
         },
         mounted() {
-          this.$api.get("api/user/info","",function (data) {
+          this.$api.get("api/system/code","",function (data) {
 
           })
         },
         methods: {
           imgFun(){
             let vm=this;
-            vm.imgUrl="api/system/kaptcha"+"?"+Math.random()
+            vm.imgUrl="api/system/code"+"?"+Math.random()
           },
           editPassFun(){
             let vm=this;
