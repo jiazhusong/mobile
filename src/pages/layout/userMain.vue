@@ -44,6 +44,7 @@
         </tabbar-item>
 
       </tabbar>
+      <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask text="" position="middle">{{popmsg}}</toast>
     </div>
 </template>
 
@@ -64,7 +65,9 @@
         data() {
             return {
               account:"",
-              userId:""
+              userId:"",
+              showPositionValue:false,
+              popmsg:""
             }
         },
         mounted() {
@@ -83,6 +86,8 @@
             vm.$api.post("api/system/logout","",function ({data}) {
               if(data.code==20){
                 sessionStorage.clear();
+                vm.showPositionValue=true;
+                  vm.popmsg="退出登录成功"
                 vm.$router.push({
                   path:"/",
                 })

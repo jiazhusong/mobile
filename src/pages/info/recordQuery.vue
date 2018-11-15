@@ -20,10 +20,10 @@
           </thead>
           <tbody>
           <tr v-for='item in datas'>
-            <td>7天</td>
-            <td>2018/11/08 16:36:43</td>
+            <td>{{item.loanDay}}天</td>
+            <td>{{item.submitDate}}</td>
             <td>{{item.status|statusFun}}</td>
-            <td style='color: rgb(255, 144, 0)'>1200</td>
+            <td style='color: rgb(255, 144, 0)'>{{item.bill}}</td>
           </tr>
           </tbody>
         </x-table>
