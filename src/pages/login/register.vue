@@ -12,13 +12,13 @@
         <x-input title="用户名：" placeholder="请输入手机号" ref='phoneNum' :max=11 :show-clear=false is-type='china-mobile' v-model="phoneNum" required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"  class="iconfont icon-yonghu"  ></i>
         </x-input>
-        <x-input title="密码：" type='password' ref='password' :min=6 :max=16 placeholder='请输入密码' :show-clear=false v-model="password" required>
+        <x-input title="密码：" :type='passwordType' ref='password' :min=6 :max=16 placeholder='请输入密码' :show-clear=false v-model="password" required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
-          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  ></i>
+          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  @click='passwordTypeChange'></i>
         </x-input>
-        <x-input title="密码：" placeholder='请再次输入密码' :min=6 :max=16 ref='passwordAgin' :show-clear=false type='password' v-model="passwordAgin" required>
+        <x-input title="密码："  placeholder='请再次输入密码' :min=6 :max=16 ref='passwordAgin' :show-clear=false :type='passwordAginType' v-model="passwordAgin" required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
-          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  ></i>
+          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  @click='passwordAginTypeFun'></i>
         </x-input>
         <x-input  title="验证码" placeholder='请输入验证码' v-model="verificationCode " :show-clear=false ref='verificationCode' required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>
@@ -34,6 +34,7 @@
       <div v-transfer-dom>
         <alert v-model="show"  @on-show="onShow" @on-hide="onHide"> {{msg}}</alert>
       </div>
+      <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask :text="showMsg" position="middle"></toast>
       <div class='parent-box'>
         如果您已经拥有账号，请点击这里
         <router-link to='/'> <x-button style='' type="primary" mini  >登录</x-button></router-link>
@@ -45,7 +46,7 @@
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Alert, TransferDomDirective as TransferDom  } from 'vux'
+  import { XInput,Group,XButton,XHeader,Alert, TransferDomDirective as TransferDom ,Toast } from 'vux'
     export default {
         name: "register",
       directives: {
@@ -56,7 +57,8 @@
         Group,
         XButton,
         XHeader,
-        Alert
+        Alert,
+        Toast
       },
         props: [],
         data() {
@@ -67,9 +69,14 @@
               verificationCode:"",
               phoneCode:"",
               codeBtn:"发送验证码",
-              imgUrl:"http://39.105.80.106:9000/system/kaptcha",
+              imgUrl:"api/system/kaptcha",
               show:false,
               msg:"",
+              passwordAginType:"password",
+              passwordType:"password",
+              showPositionValue:false,
+              showMsg:"",
+
             }
         },
         mounted() {
@@ -78,9 +85,16 @@
         },
         methods: {
           imgFun(){
-            console.log(1);
             let vm=this;
-            vm.imgUrl="http://39.105.80.106:9000/system/kaptcha"+"?"+Math.random()
+            vm.imgUrl="api/system/kaptcha"+"?"+Math.random()
+          },
+          passwordTypeChange(){
+            let vm=this;
+            vm.passwordType=vm.passwordType=="password"?"text":"password"
+          },
+          passwordAginTypeFun(){
+            let vm=this;
+            vm.passwordAginType=vm.passwordAginType=="password"?"text":"password"
           },
           registerFun(){
             let vm=this;
@@ -114,8 +128,17 @@
                   tel: vm.phoneNum,
                   telCode: vm.phoneCode,
                   password:vm.password
-                },function (data) {
-
+                },function ({data}) {
+                    if(data.code==20){
+                      vm.showPositionValue=true;
+                      vm.showMsg="注册成功";
+                      vm.$router.push({
+                        path:"/"
+                      })
+                    }else {
+                      vm.showPositionValue=true;
+                      vm.showMsg=data.message
+                    }
                 })
               }else {
                 vm.msg="密码和确认密码不一致，请重新输入";
@@ -130,8 +153,7 @@
             let vm=this;
             if(vm.$refs["phoneNum"].valid){
               vm.$api.get("api/system/"+vm.phoneNum+"/code","",function ({data}) {
-                console.log(data);
-                if(data.data.code==200){
+                if(data.code==20){
                   let n=60;
                   let timer=setInterval(function () {
                     vm.codeBtn=n+"S";
@@ -141,6 +163,9 @@
                       clearInterval(timer);
                     }
                   },1000)
+                }else {
+                  vm.showPositionValue=true;
+                  vm.showMsg=data.message
                 }
               })
             }else {
@@ -150,10 +175,8 @@
 
           },
           onHide () {
-            console.log('on hide')
           },
           onShow () {
-            console.log('on show')
           },
         }
     }

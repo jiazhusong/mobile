@@ -241,6 +241,7 @@
             vm.$api.post("api/user/basic",vm.basicObj,function ({data}) {
               if(data.code==20){
                 vm.showPositionValue=true;
+
               }else {
                 vm.show=true;
                 vm.msg=data.message

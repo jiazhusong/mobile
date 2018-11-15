@@ -1,8 +1,8 @@
 <template>
     <div>
-      <x-header style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>用户登录</x-header>
-      <div style='text-align: center'><img src="../../../static/banana1.jpg" height='100' alt=""></div>
-      <div style='text-align: center'>香蕉派</div>
+      <x-header  style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>用户登录</x-header>
+      <div style='text-align: center;margin-top: 10px;'><img src="../../../static/logo1.png" height='130' alt=""></div>
+
       <div style='padding: 0 30px'>
         <group>
           <x-input title="用户名：" placeholder="请输入用户名" v-model="useName" ref='useName' required>
@@ -23,30 +23,44 @@
           <router-link to='/resetpass'>忘记密码</router-link>
         </div>
       </div>
-
+      <div v-transfer-dom>
+        <alert v-model="show"  @on-show="onShow" @on-hide="onHide"> {{msg}}</alert>
+      </div>
+      <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask :text="showMsg" position="middle"></toast>
     </div>
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader } from 'vux'
+  import { XInput,Group,XButton,XHeader,Alert,TransferDomDirective as TransferDom,Toast } from 'vux'
     export default {
         name: "login",
+      directives: {
+        TransferDom
+      },
         components: {
           XInput,
           Group,
           XButton,
-          XHeader
+          XHeader,
+          Alert,
+          Toast
       },
       data(){
           return{
             useName:"",
             password:"",
             num:"",
-            imgUrl:"api/system/kaptcha"
+            imgUrl:"api/system/kaptcha",
+            show:false,
+            msg:"",
+            showPositionValue:false,
+            showMsg:""
           }
       },
       mounted(){
         let vm=this;
+      // :left-options="{showBack: false}"
+
         // vm.$api.get("api/system/kaptcha",{responseType: 'arraybuffer'},function (data) {
         //   console.log(data);
         //   // vm.imgUrl =  'data:image/png;base64,' + btoa(
@@ -70,13 +84,24 @@
             },function ({data}) {
               console.log(data);
               if(data.code==20){
+                vm.showPositionValue=true;
+                vm.showMsg="恭喜您登录成功"
+                sessionStorage.setItem('username',vm.useName)
                 vm.$router.push({
                   path:"/userlayout",
                 })
+              }else {
+                vm.showPositionValue=true;
+                vm.showMsg=data.message
               }
             })
-
-        }
+        },
+        onHide () {
+          console.log('on hide')
+        },
+        onShow () {
+          console.log('on show')
+        },
       }
     }
 </script>

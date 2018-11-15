@@ -24,13 +24,13 @@
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont  icon-yanzhengma2"  ></i>
           <x-button slot="right" type="primary" :disabled='codeBtn!="发送验证码"'  @click.native='sendCodeFun' mini >{{codeBtn}}</x-button>
         </x-input>
-        <x-input  placeholder='请输入新密码' required v-model="password" ref='password'>
+        <x-input  placeholder='请输入新密码' required v-model="password" :type='passwordType' ref='password'>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
-          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  ></i>
+          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  @click='passwordTypeChange'></i>
         </x-input>
-        <x-input  placeholder='确认新密码' required v-model="passwordAgin" ref='passwordAgin'>
+        <x-input  placeholder='确认新密码' required v-model="passwordAgin" :type='passwordAginType' ref='passwordAgin'>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
-          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  ></i>
+          <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  @click='passwordAginTypeFun'></i>
 
         </x-input>
         <div style='height:1px;background: #D9D9D9; '></div>
@@ -73,23 +73,33 @@
               phoneCode:"",
               password:"",
               passwordAgin:"",
-              imgUrl:"api/system/code",
+              imgUrl:"api/system/kaptcha",
               codeBtn:"发送验证码",
               showPositionValue:false,
               popmsg:"",
               msg:"",
-              show:false
+              show:false,
+              passwordType:"password",
+              passwordAginType:"password",
             }
         },
         mounted() {
-          this.$api.get("api/system/code","",function (data) {
+          this.$api.get("api/user/info","",function (data) {
 
           })
         },
         methods: {
           imgFun(){
             let vm=this;
-            vm.imgUrl="api/system/code"+"?"+Math.random()
+            vm.imgUrl="api/system/kaptcha"+"?"+Math.random()
+          },
+          passwordTypeChange(){
+            let vm=this;
+            vm.passwordType=vm.passwordType=="password"?"text":"password"
+          },
+          passwordAginTypeFun(){
+            let vm=this;
+            vm.passwordAginType=vm.passwordAginType=="password"?"text":"password"
           },
           editPassFun(){
             let vm=this;
@@ -125,7 +135,11 @@
                   telCode: vm.phoneCode,
                   password:vm.password
                 },function ({data}) {
-
+                    if(data.code==20){
+                      vm.popmsg="修改成功";
+                      vm.showPositionValue=true;
+                      history.go(-1);
+                    }
                 })
               }else {
                 vm.msg="密码和确认密码不一致，请重新输入";
@@ -137,9 +151,11 @@
             let vm=this;
             if(vm.$refs["phoneNum"].valid){
               vm.codeBtn="";
-              vm.$api.get("api/system/"+vm.phoneNum+"/code","",function ({data}) {
+              vm.$api.get("api/system/code",{
+                tel:vm.phoneNum
+              },function ({data}) {
                 console.log(data);
-                if(data.code==200){
+                if(data.code==20){
                   let n=60;
                   let timer=setInterval(function () {
                     vm.codeBtn=n+"S";

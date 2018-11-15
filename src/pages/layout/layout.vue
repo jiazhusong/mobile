@@ -32,7 +32,7 @@
         <div>
           <x-button type='primary' @click.native='appliyMoney'>立即申请</x-button>
         </div>
-        <div style='margin-top: 20px;color: rgb(25, 131, 173)'>
+        <div style='margin-top: 20px;color: rgb(25, 131, 173);' >
           注：点击申请即表示您已同意用户条款和隐私条款，本平台不对在校大学生开放
         </div>
       </div>
@@ -80,12 +80,12 @@
               msg:"",
               list:[{
                 url: 'javascript:',
-                img: 'http://pic29.nipic.com/20130511/9252150_174018365301_2.jpg',
-                title: '送你一朵fua'
+                img: '../../../static/swiper1.jpg',
+                title: ''
               }, {
                 url: 'javascript:',
-                img: 'http://pic.58pic.com/58pic/15/63/07/42Q58PIC42U_1024.jpg',
-                title: '送你一次旅行',
+                img: '../../../static/swiper2.jpg',
+                title: '',
               }]
             }
         },

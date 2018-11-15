@@ -8,6 +8,7 @@
     <x-header style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>申请记录</x-header>
     <div :style='{"height":maxHei}' style='overflow: auto;margin-bottom: 60px; '>
       <load-more v-if='tipShow' tip="正在加载中，请稍后..."></load-more>
+
       <x-table v-if='!tipShow' :cell-bordered="false"  style="background-color:#fff;">
         <thead>
         <tr>
@@ -27,6 +28,7 @@
 
         </tbody>
       </x-table>
+      <p style='text-align: center' v-if='datas.length==0&&!tipShow'>暂无数据</p>
     </div>
     <tabbar style='position: fixed'>
       <tabbar-item link="/layout">

@@ -20,7 +20,7 @@
             <cell is-link title="申请记录 " link='/applicationRecord'>
               <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../../static/applicationRecord.png">
             </cell>
-            <cell is-link title="账单查询 " link="/component/tabbar-icon">
+            <cell is-link title="账单查询 " link="/recordQuery">
               <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../../static/billQuery.png">
             </cell>
             <cell is-link title="修改密码 " link="/resetpass">
@@ -82,8 +82,9 @@
             let vm=this;
             vm.$api.post("api/system/logout","",function ({data}) {
               if(data.code==20){
-                vm.$push({
-                  path:"/"
+                sessionStorage.clear();
+                vm.$router.push({
+                  path:"/",
                 })
               }
             })
