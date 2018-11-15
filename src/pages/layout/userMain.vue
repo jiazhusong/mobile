@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem } from 'vux'
+  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Toast } from 'vux'
     export default {
         name: "userMain",
         components: {
@@ -59,7 +59,8 @@
           XHeader,
           Cell,
           Tabbar,
-          TabbarItem
+          TabbarItem,
+          Toast
         },
         props: [],
         data() {
