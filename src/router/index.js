@@ -1,13 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '@/pages/login/login'
-import register from '@/pages/login/register'
-import resetpass from '@/pages/login/resetPassword'
-import userLayout from "@/pages/layout/userMain"
-import layout from "@/pages/layout/layout"
-import myInfo from "@/pages/info/myInfo"
-import applicationRecord from "@/pages/info/applicationRecord"
-import recordQuery from "@/pages/info/recordQuery"
+// import login from '@/pages/login/login'
+// import register from '@/pages/login/register'
+// import resetpass from '@/pages/login/resetPassword'
+// import userLayout from "@/pages/layout/userMain"
+// import layout from "@/pages/layout/layout"
+// import myInfo from "@/pages/info/myInfo"
+// import applicationRecord from "@/pages/info/applicationRecord"
+// import recordQuery from "@/pages/info/recordQuery"
+const login = r => require.ensure([],() => r(require('@/pages/login/login')),'login');
+const register = r => require.ensure([],() => r(require('@/pages/login/register')),'register');
+const resetpass = r => require.ensure([],() => r(require('@/pages/login/resetPassword')),'resetpass');
+const userLayout = r => require.ensure([],() => r(require('@/pages/layout/userMain')),'userLayout');
+const layout = r => require.ensure([],() => r(require('@/pages/layout/layout')),'layout');
+const myInfo = r => require.ensure([],() => r(require('@/pages/info/myInfo')),'myInfo');
+const applicationRecord = r => require.ensure([],() => r(require('@/pages/info/applicationRecord')),'applicationRecord');
+const recordQuery = r => require.ensure([],() => r(require('@/pages/info/recordQuery')),'recordQuery');
 Vue.use(Router)
 
 

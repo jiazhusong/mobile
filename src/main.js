@@ -4,7 +4,6 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import router from './router'
 import App from './App'
-import Home from './components/HelloFromVux'
 FastClick.attach(document.body)
 import Api from './api/index.js';
 Vue.prototype.$api = Api;
