@@ -30,6 +30,17 @@
         <p style='text-align: center' v-if='datas.length==0&&!tipShow'>暂无数据</p>
       </div>
       <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask text="" position="middle">{{popmsg}}</toast>
+      <tabbar style='position: fixed'>
+        <tabbar-item link="/layout">
+          <i slot="icon" class='iconfont icon-yemian-copy'></i>
+          <span slot="label">首页</span>
+        </tabbar-item>
+        <tabbar-item selected link="/userlayout">
+          <i slot="icon" class='iconfont icon-wodedangxuan'></i>
+          <span slot="label">我的</span>
+        </tabbar-item>
+
+      </tabbar>
 
     </div>
 </template>

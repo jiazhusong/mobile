@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <tabbar>
+      <tabbar style='position: fixed'>
         <tabbar-item selected link="/layout">
           <i slot="icon" class='iconfont icon-yemian-copy'></i>
           <span slot="label">首页</span>
