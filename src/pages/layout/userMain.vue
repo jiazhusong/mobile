@@ -44,37 +44,48 @@
         </tabbar-item>
 
       </tabbar>
+      <div v-transfer-dom>
+        <loading :show="show2" text=""></loading>
+      </div>
       <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask text="" position="middle">{{popmsg}}</toast>
     </div>
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Toast } from 'vux'
+  import {Group,XHeader,Cell,Tabbar,TabbarItem,Toast ,Loading, TransferDomDirective as TransferDom } from 'vux'
     export default {
         name: "userMain",
         components: {
-          XInput,
           Group,
-          XButton,
           XHeader,
           Cell,
           Tabbar,
           TabbarItem,
-          Toast
+          Toast,
+          Loading
         },
         props: [],
+      directives: {
+        TransferDom
+      },
         data() {
             return {
               account:"",
               userId:"",
               showPositionValue:false,
-              popmsg:""
+              popmsg:"",
+              show2:false
             }
         },
         mounted() {
           let vm=this;
+          this.$vux.loading.show({
+            text: '正在加载中..'
+          })
           this.$api.get("api/user/info","",function ({data}) {
+            // console.log(res);
             if(data.code==20){
+              vm.$vux.loading.hide();
               vm.userId=data.data.id;
               vm.account=data.data.tel;
             }
@@ -94,7 +105,15 @@
                 })
               }
             })
-          }
+          },
+          showLoading () {
+            this.$vux.loading.show({
+              text: 'Loading'
+            })
+            setTimeout(() => {
+              this.$vux.loading.hide()
+            }, 4000)
+          },
         }
     }
 </script>

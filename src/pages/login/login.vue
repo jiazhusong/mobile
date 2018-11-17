@@ -54,7 +54,7 @@
             show:false,
             msg:"",
             showPositionValue:false,
-            showMsg:""
+            showMsg:"",
           }
       },
       mounted(){

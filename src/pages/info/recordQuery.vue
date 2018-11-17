@@ -7,9 +7,8 @@
     <div>
       <x-header style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>申请记录</x-header>
       <div :style='{"height":maxHei}'>
-        <load-more v-if='tipShow' tip="正在加载中，请稍后..."></load-more>
 
-        <x-table  v-if='!tipShow' :cell-bordered="false" style="background-color:#fff;">
+        <x-table  :cell-bordered="false" style="background-color:#fff;">
           <thead>
           <tr>
             <th>申请周期</th>
@@ -27,7 +26,7 @@
           </tr>
           </tbody>
         </x-table>
-        <p style='text-align: center' v-if='datas.length==0&&!tipShow'>暂无数据</p>
+        <p style='text-align: center' v-if='datas.length==0&&tipshow==true'>暂无数据</p>
       </div>
       <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask text="" position="middle">{{popmsg}}</toast>
       <tabbar style='position: fixed'>
@@ -41,28 +40,26 @@
         </tabbar-item>
 
       </tabbar>
-
+      <div v-transfer-dom>
+        <loading :show="show2" text=""></loading>
+      </div>
     </div>
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio,XTable ,LoadMore ,Toast} from 'vux'
+  import {XHeader,Tabbar,TabbarItem ,XTable ,Toast,Loading,TransferDomDirective as TransferDom } from 'vux'
     export default {
         name: "recordQuery",
+      directives: {
+        TransferDom
+      },
         components: {
-          XInput,
-          Group,
-          XButton,
           XHeader,
-          Cell,
           Tabbar,
           TabbarItem,
-          Tab,
-          TabItem,
-          Radio,
           XTable,
-          LoadMore,
-          Toast
+          Toast,
+          Loading
         },
         props: [],
       filters:{
@@ -79,21 +76,26 @@
         data() {
             return {
               maxHei:"",
-              tipShow:true,
+              tipshow:false,
               datas:[],
               showPositionValue:false,
               popmsg:"",
+              show2:false,
             }
         },
         mounted() {
           let vm=this;
+          this.$vux.loading.show({
+            text: '正在加载中...'
+          })
           vm.maxHei=window.screen.height-100+"px";
           vm.$api.get("api/bill/loan/check",{
             page:0,
             size:50,
           },function ({data}) {
-            vm.tipShow=false;
+            vm.$vux.loading.hide();
             if(data.code==20){
+              vm.tipshow=true;
               vm.datas=data.data.list
             }else {
               vm.popmsg=data.message;

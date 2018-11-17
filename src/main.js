@@ -6,6 +6,8 @@ import router from './router'
 import App from './App'
 FastClick.attach(document.body)
 import Api from './api/index.js';
+import  { LoadingPlugin } from 'vux'
+Vue.use(LoadingPlugin)
 Vue.prototype.$api = Api;
 
 Vue.config.productionTip = false

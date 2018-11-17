@@ -84,9 +84,6 @@
             }
         },
         mounted() {
-          this.$api.get("api/user/info","",function (data) {
-
-          })
         },
         methods: {
           imgFun(){

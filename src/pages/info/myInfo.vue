@@ -73,7 +73,18 @@
             <!--<i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>-->
             <!--<img slot="right-full-height" src="https://ws1.sinaimg.cn/large/663d3650gy1fq684go3glj203m01hmwy.jpg">-->
             <!--</x-input>-->
+            <!--@remove-image="removeImageMethod"-->
             <div style='height:1px;background: #D9D9D9; '></div>
+            <!--<uploader-->
+              <!--:images="images"-->
+              <!--:handle-click="true"-->
+              <!--:show-header="false"-->
+              <!--:upload-url="uploadUrl"-->
+              <!--name="img"-->
+              <!--size="small"-->
+              <!--@add-image="addImageMethod"-->
+
+            <!--&gt;</uploader>-->
             <x-button style='margin-top: 20px;' @click.native='basicSubmit' type="primary" >保存</x-button>
           </group>
         </div>
@@ -126,12 +137,16 @@
         </tabbar-item>
 
       </tabbar>
+      <div v-transfer-dom>
+        <loading :show="show2" text=""></loading>
+      </div>
     </div>
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio,Alert , TransferDomDirective as TransferDom ,Toast   } from 'vux'
-  import Uploader from 'vux-uploader'
+  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio,Alert,Loading , TransferDomDirective as TransferDom ,Toast   } from 'vux'
+  // import Uploader from 'vux-uploader'
+
     export default {
         name: "myInfo",
       directives: {
@@ -148,13 +163,16 @@
           Tab,
           TabItem,
           Radio,
-          Uploader,
+          // Uploader,
           Alert,
-          Toast
+          Toast,
+          Loading
         },
         props: [],
         data() {
             return {
+              images:[],
+              show2:false,
               showNum:0,
               list: [{key: '1', value: '男'}, {key: '2', value: '女'}],
               sex:"1",
@@ -192,12 +210,12 @@
                 workAddress: "",
                 workUnit: ""
               },
-
+              uploadUrl:"",
               uploadObj:{
                 images:[{
                   url:"http://pic.58pic.com/58pic/15/63/07/42Q58PIC42U_1024.jpg"
                 }],
-                uploadUrl:"",
+
                 params:{}
               },
               userId:""
@@ -205,8 +223,12 @@
         },
         mounted() {
           let vm=this;
+          this.$vux.loading.show({
+            text: '正在加载中...'
+          })
           vm.maxHei=window.screen.height-160+"px";
           vm.$api.get("api/user/info","",function ({data}) {
+            vm.$vux.loading.hide();
             if(data.code==20){
               vm.userId=data.data.id
             }
@@ -252,7 +274,7 @@
             })
           },
           addImageMethod(){
-
+            console.log(1);
           },
           bankSubmit(){
             let vm=this;

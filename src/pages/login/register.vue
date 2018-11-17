@@ -122,6 +122,7 @@
             if( vm.show){
               return false;
             }else {
+
               if(vm.password===vm.passwordAgin){
                 vm.$api.post("api/system/register",{
                   kaptcha: vm.verificationCode,

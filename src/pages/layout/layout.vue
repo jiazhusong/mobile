@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Swiper,Alert,TransferDomDirective as TransferDom } from 'vux'
+  import {XButton,XHeader,Tabbar,TabbarItem,Swiper,Alert,TransferDomDirective as TransferDom } from 'vux'
 
     export default {
         name: "layout",
@@ -65,11 +65,9 @@
           TransferDom
        },
         components: {
-          XInput,
-          Group,
+
           XButton,
           XHeader,
-          Cell,
           Tabbar,
           TabbarItem,
           Swiper,
