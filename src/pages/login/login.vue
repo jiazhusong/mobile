@@ -5,7 +5,7 @@
 
       <div style='padding: 0 30px'>
         <group>
-          <x-input title="用户名：" placeholder="请输入用户名" v-model="useName" ref='useName' required>
+          <x-input title="用户名：" placeholder="请输入用户名" v-model="useName" ref='useName' is-type='china-mobile'  required>
             <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"  class="iconfont icon-yonghu"  ></i>
           </x-input>
           <x-input title="密码：" type='password' placeholder='请输入密码' v-model="password" ref='password' required>
@@ -77,6 +77,21 @@
           // vm.$router.push({
           //   path:"/userlayout"
           // })
+            if(!vm.$refs["useName"].valid){
+              vm.showPositionValue=true;
+              vm.showMsg="请输入正确的手机号码";
+              return false;
+            }
+            if(!vm.$refs["password"].valid){
+              vm.showPositionValue=true;
+              vm.showMsg="请输入正确的密码";
+              return false;
+            }
+            if(!vm.$refs["num"].valid){
+              vm.showPositionValue=true;
+              vm.showMsg="请输入正确的验证码";
+              return false;
+            }
             vm.$api.post("api/system/login",{
               kaptcha:vm.num,
               tel:vm.useName,
