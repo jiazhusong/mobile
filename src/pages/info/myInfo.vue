@@ -75,16 +75,16 @@
             <!--</x-input>-->
             <!--@remove-image="removeImageMethod"-->
             <div style='height:1px;background: #D9D9D9; '></div>
-            <!--<uploader-->
-              <!--:images="images"-->
-              <!--:handle-click="true"-->
-              <!--:show-header="false"-->
-              <!--:upload-url="uploadUrl"-->
-              <!--name="img"-->
-              <!--size="small"-->
-              <!--@add-image="addImageMethod"-->
+            <uploader
+              :images="images"
+              :handle-click="true"
+              :show-header="false"
+              :upload-url="uploadUrl"
+              name="img"
+              size="small"
+              @add-image="addImageMethod"
 
-            <!--&gt;</uploader>-->
+            ></uploader>
             <x-button style='margin-top: 20px;' @click.native='basicSubmit' type="primary" >保存</x-button>
           </group>
         </div>
@@ -145,7 +145,7 @@
 
 <script>
   import { XInput,Group,XButton,XHeader,Cell,Tabbar,TabbarItem,Tab,TabItem ,Radio,Alert,Loading , TransferDomDirective as TransferDom ,Toast   } from 'vux'
-  // import Uploader from 'vux-uploader'
+  import Uploader from 'vux-uploader'
 
     export default {
         name: "myInfo",
@@ -163,7 +163,7 @@
           Tab,
           TabItem,
           Radio,
-          // Uploader,
+          Uploader,
           Alert,
           Toast,
           Loading
@@ -210,7 +210,7 @@
                 workAddress: "",
                 workUnit: ""
               },
-              uploadUrl:"",
+              uploadUrl:"sdsddsd/dsd",
               uploadObj:{
                 images:[{
                   url:"http://pic.58pic.com/58pic/15/63/07/42Q58PIC42U_1024.jpg"
