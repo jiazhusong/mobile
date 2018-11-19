@@ -18,17 +18,17 @@
           <group ref='groups'>
             <x-input label-width='100' title='姓名：' required  ref='realName'  placeholder="请输入真实姓名" v-model="basicObj.realName">
             </x-input>
-            <x-input label-width='100' title='身份证号码：' required  ref='realName'  placeholder="请输入身份证号码" v-model="basicObj.idCart">
+            <x-input label-width='100' title='身份证号码：' required  ref='idCart'  placeholder="请输入身份证号码" v-model="basicObj.idCart">
             </x-input>
-            <x-input label-width='100' title='QQ号码：' required   placeholder="请输入QQ号码" v-model="basicObj.qq">
+            <x-input label-width='100' title='QQ号码：' required  ref='qq'  placeholder="请输入QQ号码" v-model="basicObj.qq">
             </x-input>
-            <x-input label-width='100' title='微信号码：' required  placeholder="请输入微信号码" v-model="basicObj.wechat">
+            <x-input label-width='100' title='微信号码：' required ref='wechat'  placeholder="请输入微信号码" v-model="basicObj.wechat">
             </x-input>
-            <x-input label-width='100' title='学信网账号：' required  placeholder="请输入学信网账号" v-model="basicObj.xxwzh">
+            <x-input label-width='100' title='学信网账号：' required ref='xxwzh'  placeholder="请输入学信网账号" v-model="basicObj.xxwzh">
             </x-input>
-            <x-input label-width='100' title='学信网密码：' required  placeholder="请输入学信网密码" v-model="basicObj.xxwmm">
+            <x-input label-width='100' title='学信网密码：' required  ref='xxwmm' placeholder="请输入学信网密码" v-model="basicObj.xxwmm">
             </x-input>
-            <x-input label-width='100' title='运营商密码：' required  placeholder="请输入运营商密码" v-model="basicObj.yysmm">
+            <x-input label-width='100' title='运营商密码：' required  ref='yysmm' placeholder="请输入运营商密码" v-model="basicObj.yysmm">
             </x-input>
             <!--<div style='padding-left: 15px;'>-->
               <!--<span>身份证正面照</span>-->
@@ -49,18 +49,18 @@
               <!--</uploader>-->
             <!--</div>-->
 
-            <x-input label-width='100' title='父亲姓名：' required  placeholder="请输入父亲姓名" v-model="basicObj.fqxm">
+            <x-input label-width='100' title='父亲姓名：' required ref='fqxm'  placeholder="请输入父亲姓名" v-model="basicObj.fqxm">
             </x-input>
-            <x-input label-width='100' title='父亲电话：' required  placeholder="请输入父亲电话" v-model="basicObj.fqdh">
+            <x-input label-width='100' title='父亲电话：' required ref='fqdh'  placeholder="请输入父亲电话" v-model="basicObj.fqdh">
             </x-input>
 
-            <x-input label-width='100' title='母亲姓名：'  required placeholder="请输入母亲姓名" v-model="basicObj.mqxm">
+            <x-input label-width='100' title='母亲姓名：'  required ref='mqxm' placeholder="请输入母亲姓名" v-model="basicObj.mqxm">
             </x-input>
-            <x-input label-width='100' title='母亲电话：' required  placeholder="请输入母亲电话" v-model="basicObj.mqdh">
+            <x-input label-width='100' title='母亲电话：' required ref='mqdh' placeholder="请输入母亲电话" v-model="basicObj.mqdh">
             </x-input>
-            <x-input label-width='100' title='同学姓名：' required  placeholder="请输入同学姓名" v-model="basicObj.txxm">
+            <x-input label-width='100' title='同学姓名：' required ref='txxm' placeholder="请输入同学姓名" v-model="basicObj.txxm">
             </x-input>
-            <x-input label-width='100' title='同学电话：' required  placeholder="请输入同学电话" v-model="basicObj.txdh">
+            <x-input label-width='100' title='同学电话：' required ref='txdh' placeholder="请输入同学电话" v-model="basicObj.txdh">
             </x-input>
             <!--<div style='display: flex;border-top: 1px solid #D9D9D9;'>-->
             <!--<spans style='width: 100px;margin-left: 15px;'>性别：</spans>-->
@@ -90,19 +90,19 @@
         </div>
         <div v-show='showNum==1' :style='{"max-height": maxHei}' style='overflow: auto'>
           <group>
-            <x-input label-width='100' title='银行：'  required placeholder="请输入开户银行" v-model="bankObj.bank">
+            <x-input label-width='100' title='银行：'  required  ref='bank' placeholder="请输入开户银行" v-model="bankObj.bank">
             </x-input>
-            <x-input label-width='100' title='银行账号：'  required placeholder="请输入银行账号" v-model="bankObj.bankAccount">
+            <x-input label-width='100' title='银行账号：'  required ref='bankAccount' placeholder="请输入银行账号" v-model="bankObj.bankAccount">
             </x-input>
-            <x-input label-width='100' title='分行信息：'  required placeholder="请输入分行信息" v-model="bankObj.fhxx">
+            <x-input label-width='100' title='分行信息：'  required ref='fhxx' placeholder="请输入分行信息" v-model="bankObj.fhxx">
             </x-input>
-            <x-input label-width='100' title='支付宝账号：' required  placeholder="请输入支付宝账号" v-model="bankObj.zfbzh">
+            <x-input label-width='100' title='支付宝账号：' required ref='zfbzh' placeholder="请输入支付宝账号" v-model="bankObj.zfbzh">
             </x-input>
-            <x-input label-width='100' title='支付宝密码：'  required placeholder="请输入支付宝密码" v-model="bankObj.zfbmm">
+            <x-input label-width='100' title='支付宝密码：'  required ref='zfbmm' placeholder="请输入支付宝密码" v-model="bankObj.zfbmm">
             </x-input>
-            <x-input label-width='100' title='淘宝账号：'  required placeholder="请输入淘宝账号" v-model="bankObj.tbzh">
+            <x-input label-width='100' title='淘宝账号：'  required ref='tbzh' placeholder="请输入淘宝账号" v-model="bankObj.tbzh">
             </x-input>
-            <x-input label-width='100' title='淘宝密码：' required  placeholder="请输入淘宝密码" v-model="bankObj.tbmm">
+            <x-input label-width='100' title='淘宝密码：' required ref='tbmm'  placeholder="请输入淘宝密码" v-model="bankObj.tbmm">
             </x-input>
             <div style='height:1px;background: #D9D9D9; '></div>
             <x-button style='margin-top: 20px;' type="primary" @click.native='bankSubmit'>保存</x-button>
@@ -110,11 +110,11 @@
         </div>
         <div v-show='showNum==2' :style='{"max-height": maxHei}' style='overflow: auto'>
           <group>
-            <x-input title='工作单位：'  placeholder="请输入工作单位" required v-model="workObj.workUnit">
+            <x-input title='工作单位：'  placeholder="请输入工作单位" ref='workUnit' required v-model="workObj.workUnit">
             </x-input>
-            <x-input title='单位地址：'  placeholder="请输入单位地址" required v-model="workObj.workAddress">
+            <x-input title='单位地址：'  placeholder="请输入单位地址" ref='workAddress' required v-model="workObj.workAddress">
             </x-input>
-            <x-input title='家庭地址：'  placeholder="请输入家庭地址" required v-model="workObj.familyAddress">
+            <x-input title='家庭地址：'  placeholder="请输入家庭地址" ref='familyAddress' required v-model="workObj.familyAddress">
             </x-input>
 
             <div style='height:1px;background: #D9D9D9; '></div>
@@ -125,7 +125,7 @@
       <div v-transfer-dom>
         <alert v-model="show"  @on-show="onShow" @on-hide="onHide"> {{msg}}</alert>
       </div>
-      <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask text="操作成功" position="middle"></toast>
+      <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask  position="middle">{{popMsg}}</toast>
       <tabbar style='position: fixed'>
         <tabbar-item  link="/layout">
           <i slot="icon" class='iconfont icon-yemian-copy'></i>
@@ -173,6 +173,7 @@
             return {
               images:[],
               show2:false,
+              popMsg:"",
               showNum:0,
               list: [{key: '1', value: '男'}, {key: '2', value: '女'}],
               sex:"1",
@@ -262,11 +263,21 @@
 
           basicSubmit(){
             let vm=this;
+            for(let key in vm.basicObj){
+              console.log(key);
+              console.log(vm.basicObj);
+              // console.log(vm.$refs[key]);
+              if(key!="userId"&&!vm.$refs[key].valid){
+                vm.showPositionValue=true;
+                vm.popMsg="请把信息填写完整";
+                return false
+              }
+            }
             vm.basicObj.userId=vm.userId;
             vm.$api.post("api/user/basic",vm.basicObj,function ({data}) {
               if(data.code==20){
                 vm.showPositionValue=true;
-
+                vm.popMsg="操作成功";
               }else {
                 vm.show=true;
                 vm.msg=data.message
@@ -278,10 +289,19 @@
           },
           bankSubmit(){
             let vm=this;
+            for(let key in vm.bankObj){
+              // console.log(vm.$refs[key]);
+              if(key!="userId"&&!vm.$refs[key].valid){
+                vm.showPositionValue=true;
+                vm.popMsg="请把信息填写完整";
+                return false
+              }
+            }
             vm.bankObj.userId=vm.userId;
             vm.$api.post("api/user/bank",vm.bankObj,function ({data}) {
               if(data.code==20){
                 vm.showPositionValue=true;
+                vm.popMsg="操作成功";
               }else {
                 vm.show=true;
                 vm.msg=data.message
@@ -291,10 +311,19 @@
           },
           workSubmit(){
             let vm=this;
+            for(let key in vm.workObj){
+              // console.log(vm.$refs[key]);
+              if(key!="userId"&&!vm.$refs[key].valid){
+                vm.showPositionValue=true;
+                vm.popMsg="请把信息填写完整";
+                return false
+              }
+            }
             vm.workObj.userId=vm.userId;
             vm.$api.post("api/user/work",vm.workObj,function ({data}) {
               if(data.code==20){
                 vm.showPositionValue=true;
+                vm.popMsg="操作成功";
               }else {
                 vm.show=true;
                 vm.msg=data.message
