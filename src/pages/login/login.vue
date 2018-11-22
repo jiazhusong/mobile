@@ -1,7 +1,7 @@
 <template>
     <div>
       <x-header  style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>用户登录</x-header>
-      <div style='text-align: center;margin-top: 10px;'><img src="../../../static/logo1.png" height='130' alt=""></div>
+      <div style='text-align: center;margin-top: 10px;'><img src="../../../static/logo2.png" height='130' alt=""></div>
 
       <div style='padding: 0 30px'>
         <group>
