@@ -263,21 +263,69 @@
 
           basicSubmit(){
             let vm=this;
+            let testREX=/^[\u4e00-\u9fa5]{0,}$/;
+            let phoneREX=/^1[34578]\d{9}$/;
+            let idCardREX=/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
             for(let key in vm.basicObj){
-              console.log(key);
-              console.log(vm.basicObj);
-              // console.log(vm.$refs[key]);
               if(key!="userId"&&!vm.$refs[key].valid){
                 vm.showPositionValue=true;
                 vm.popMsg="请把信息填写完整";
                 return false
               }
+
             }
+            if(!testREX.test(vm.basicObj.realName)){
+              vm.showPositionValue=true;
+              vm.popMsg="请填写真实中文姓名";
+              return false
+            }
+            if(!idCardREX.test(vm.basicObj.idCart)){
+              vm.showPositionValue=true;
+              vm.popMsg="请填写18位身份证号";
+              return false
+            }
+            if(!testREX.test(vm.basicObj.fqxm)){
+              vm.showPositionValue=true;
+              vm.popMsg="请填写父亲中文姓名";
+              return false
+            }
+            if(!phoneREX.test(vm.basicObj.fqdh)){
+              vm.showPositionValue=true;
+              vm.popMsg="请填写11位父亲电话";
+              return false
+            }
+            if(!testREX.test(vm.basicObj.mqxm)){
+              vm.showPositionValue=true;
+              vm.popMsg="请填写母亲中文姓名";
+              return false
+            }
+            if(!phoneREX.test(vm.basicObj.mqdh)){
+              vm.showPositionValue=true;
+              vm.popMsg="请填写11位母亲电话";
+              return false
+            }
+            if(!testREX.test(vm.basicObj.txxm)){
+              vm.showPositionValue=true;
+              vm.popMsg="请填写同学中文姓名";
+              return false
+            }
+            if(!phoneREX.test(vm.basicObj.txdh)){
+              vm.showPositionValue=true;
+              vm.popMsg="请填写11位同学电话";
+              return false
+            }
+
             vm.basicObj.userId=vm.userId;
             vm.$api.post("api/user/basic",vm.basicObj,function ({data}) {
               if(data.code==20){
                 vm.showPositionValue=true;
                 vm.popMsg="操作成功";
+              }else if(data.code==401){
+                sessionStorage.clear();
+                vm.$router.push({
+                  path:"/"
+                })
+
               }else {
                 vm.show=true;
                 vm.msg=data.message
@@ -285,23 +333,33 @@
             })
           },
           addImageMethod(){
-            console.log(1);
           },
           bankSubmit(){
             let vm=this;
+            let zhengshu=/^\d+$/;
             for(let key in vm.bankObj){
-              // console.log(vm.$refs[key]);
               if(key!="userId"&&!vm.$refs[key].valid){
                 vm.showPositionValue=true;
                 vm.popMsg="请把信息填写完整";
                 return false
               }
             }
+            if(!zhengshu.test(vm.bankObj.bankAccount)){
+              vm.showPositionValue=true;
+              vm.popMsg="请正确的银行账号";
+              return false
+            }
             vm.bankObj.userId=vm.userId;
             vm.$api.post("api/user/bank",vm.bankObj,function ({data}) {
               if(data.code==20){
                 vm.showPositionValue=true;
                 vm.popMsg="操作成功";
+              }else if(data.code==401){
+                sessionStorage.clear();
+                vm.$router.push({
+                  path:"/"
+                })
+
               }else {
                 vm.show=true;
                 vm.msg=data.message
@@ -312,7 +370,6 @@
           workSubmit(){
             let vm=this;
             for(let key in vm.workObj){
-              // console.log(vm.$refs[key]);
               if(key!="userId"&&!vm.$refs[key].valid){
                 vm.showPositionValue=true;
                 vm.popMsg="请把信息填写完整";
@@ -324,6 +381,12 @@
               if(data.code==20){
                 vm.showPositionValue=true;
                 vm.popMsg="操作成功";
+              }else if(data.code==401){
+                sessionStorage.clear();
+                vm.$router.push({
+                  path:"/"
+                })
+
               }else {
                 vm.show=true;
                 vm.msg=data.message
@@ -331,10 +394,8 @@
             })
           },
           onHide () {
-            console.log('on hide')
           },
           onShow () {
-            console.log('on show')
           },
         }
     }

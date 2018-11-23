@@ -44,12 +44,14 @@
     <div v-transfer-dom>
       <loading :show="show2" text=""></loading>
     </div>
+    <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask text="" position="middle">{{popmsg}}</toast>
+
   </div>
 
 </template>
 
 <script>
-  import {XHeader,Tabbar,TabbarItem ,XTable,Loading,TransferDomDirective as TransferDom   } from 'vux'
+  import {XHeader,Tabbar,TabbarItem ,XTable,Loading,TransferDomDirective as TransferDom,Toast   } from 'vux'
 
   export default {
         name: "applicationRecord",
@@ -61,7 +63,8 @@
           Tabbar,
           TabbarItem,
           XTable,
-          Loading
+          Loading,
+          Toast
 
         },
         props: [],
@@ -81,7 +84,9 @@
               maxHei:"",
               datas:[],
               tipshow:false,
-              show2:false
+              show2:false,
+              showPositionValue:false,
+              popmsg:""
             }
         },
         mounted() {
@@ -98,8 +103,15 @@
             if(data.code==20){
               vm.tipshow=true;
               vm.datas=data.data.list
-            }else {
+            }else if(data.code==401){
+              sessionStorage.clear();
+              vm.$router.push({
+                path:"/"
+              })
 
+            }else {
+              vm.popmsg=data.message;
+              vm.showPositionValue=true;
             }
           })
         },

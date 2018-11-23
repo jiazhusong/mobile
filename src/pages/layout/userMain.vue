@@ -84,10 +84,14 @@
           })
           this.$api.get("api/user/info","",function ({data}) {
             // console.log(res);
+            vm.$vux.loading.hide();
             if(data.code==20){
-              vm.$vux.loading.hide();
+
               vm.userId=data.data.id;
               vm.account=data.data.tel;
+            }else {
+              vm.showPositionValue=true;
+              vm.popmsg=data.message
             }
           });
           // vm.account=vm.$router.

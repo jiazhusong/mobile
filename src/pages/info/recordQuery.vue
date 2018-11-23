@@ -97,6 +97,12 @@
             if(data.code==20){
               vm.tipshow=true;
               vm.datas=data.data.list
+            }else if(data.code==401){
+              sessionStorage.clear();
+              vm.$router.push({
+                path:"/"
+              })
+
             }else {
               vm.popmsg=data.message;
               vm.showPositionValue=true;

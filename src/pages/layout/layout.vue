@@ -6,7 +6,7 @@
 <template>
     <div>
       <x-header style='text-align: center;background: #ff9000;line-height: 50px;color: #fff'>首页</x-header>
-      <div :style='{"height":maxHei}'>
+      <div :style='{"height":maxHei}' style='overflow: auto'>
         <div style=''>
           <swiper :list="list" auto style="width:100%;margin:0 auto;" height="180px" dots-class="custom-bottom" dots-position="center"></swiper>
         </div>
@@ -93,7 +93,7 @@
         },
         mounted() {
           let vm=this;
-          vm.maxHei=window.screen.height-100+"px";
+          vm.maxHei=window.screen.height-120+"px";
         },
         methods: {
           applyFun(value){
@@ -108,6 +108,12 @@
               if(data.code==20){
                 vm.show=true;
                 vm.msg="申请成功"
+              }else if(data.code==401){
+                sessionStorage.clear();
+                vm.$router.push({
+                  path:"/"
+                })
+
               }else {
                 vm.show=true;
                 vm.msg=data.message
@@ -115,10 +121,8 @@
             })
           },
           onHide () {
-            console.log('on hide')
           },
           onShow () {
-            console.log('on show')
           },
         }
     }

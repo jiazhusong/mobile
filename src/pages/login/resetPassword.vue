@@ -151,7 +151,6 @@
               vm.$api.get("api/system/code",{
                 tel:vm.phoneNum
               },function ({data}) {
-                console.log(data);
                 if(data.code==20){
                   let n=60;
                   let timer=setInterval(function () {
@@ -173,10 +172,8 @@
             }
           },
           onHide () {
-            console.log('on hide')
           },
           onShow () {
-            console.log('on show')
           },
         }
     }

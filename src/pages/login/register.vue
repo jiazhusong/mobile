@@ -35,9 +35,8 @@
         <alert v-model="show"  @on-show="onShow" @on-hide="onHide"> {{msg}}</alert>
       </div>
       <toast v-model="showPositionValue" type="text" :time="1000" is-show-mask :text="showMsg" position="middle"></toast>
-      <div class='parent-box'>
-        如果您已经拥有账号，请点击这里
-        <router-link to='/'> <x-button style='' type="primary" mini  >登录</x-button></router-link>
+      <div style='margin-top: 20px;'>
+        如果您已经拥有账号,请点击<router-link to='/'> <x-button style='' type="primary" mini  >登录</x-button></router-link>
 
       </div>
     </div>
