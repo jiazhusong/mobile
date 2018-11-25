@@ -24,7 +24,7 @@
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>
           <img slot="right-full-height" :src="imgUrl" @click='imgFun'>
         </x-input>
-        <x-input type='number' title="发送验证码" class="weui-vcode" v-model='phoneCode' :show-clear=false ref='phoneCode' required>
+        <x-input   placeholder='请输入手机验证码' title="发送验证码" class="weui-vcode" v-model='phoneCode' :show-clear=false ref='phoneCode' required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont  icon-yanzhengma1"  ></i>
           <x-button slot="right" type="primary"  :disabled='codeBtn!="发送验证码"'  @click.native='sendCodeFun' mini >{{codeBtn}}</x-button>
         </x-input>
