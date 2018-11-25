@@ -281,7 +281,7 @@
             }
             if(!idCardREX.test(vm.basicObj.idCart)){
               vm.showPositionValue=true;
-              vm.popMsg="请填写18位身份证号";
+              vm.popMsg="请填写18位正确的身份证号";
               return false
             }
             if(!testREX.test(vm.basicObj.fqxm)){
