@@ -99,52 +99,56 @@
             let vm=this;
             vm.msg="请输入";
             if(!vm.$refs["phoneNum"].valid){
-              vm.msg+="正确的手机号，";
+              vm.msg+="正确的手机号";
              vm.show=true;
+             return false
             }
             if(!vm.$refs["password"].valid){
-              vm.msg+="6-16位密码，";
+              vm.msg+="6-16位密码";
               vm.show=true;
+              return false
             }
             if(!vm.$refs["passwordAgin"].valid){
-              vm.msg+="确认密码，";
+              vm.msg+="确认密码";
               vm.show=true;
+              return false
             }
             if(!vm.$refs["verificationCode"].valid){
-              vm.msg+="验证码，";
+              vm.msg+="验证码";
               vm.show=true;
+              return false
             }
             if(!vm.$refs["phoneCode"].valid){
-              vm.msg+="手机验证码，";
+              vm.msg+="手机验证码";
               vm.show=true;
+              return false
             }
-            if( vm.show){
-              return false;
+            if(!/^\d{6}$/.test(vm.phoneCode)){
+              vm.msg+="6位手机验证码";
+              vm.show=true;
+              return false
+            }
+            if(vm.password===vm.passwordAgin){
+              vm.$api.post("api/system/register",{
+                kaptcha: vm.verificationCode,
+                tel: vm.phoneNum,
+                telCode: vm.phoneCode,
+                password:vm.password
+              },function ({data}) {
+                if(data.code==20){
+                  vm.showPositionValue=true;
+                  vm.showMsg="注册成功";
+                  vm.$router.push({
+                    path:"/"
+                  })
+                }else {
+                  vm.showPositionValue=true;
+                  vm.showMsg=data.message
+                }
+              })
             }else {
-
-              if(vm.password===vm.passwordAgin){
-                vm.$api.post("api/system/register",{
-                  kaptcha: vm.verificationCode,
-                  tel: vm.phoneNum,
-                  telCode: vm.phoneCode,
-                  password:vm.password
-                },function ({data}) {
-                    if(data.code==20){
-                      vm.showPositionValue=true;
-                      vm.showMsg="注册成功";
-                      vm.$router.push({
-                        path:"/"
-                      })
-                    }else {
-                      vm.showPositionValue=true;
-                      vm.showMsg=data.message
-                    }
-                })
-              }else {
-                vm.msg="密码和确认密码不一致，请重新输入";
-                vm.show=true;
-              }
-
+              vm.msg="密码和确认密码不一致，请重新输入";
+              vm.show=true;
             }
 
 
