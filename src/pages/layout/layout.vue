@@ -86,7 +86,7 @@
                 title: ''
               }, {
                 url: 'javascript:',
-                img: '../../../static/swiper2.jpg',
+                img: '../../../static/swiper4.png',
                 title: '',
               }]
             }
