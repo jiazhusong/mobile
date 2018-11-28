@@ -67,7 +67,7 @@
               passwordAgin:"",
               // verificationCode:"",
               phoneCode:"",
-              // codeBtn:"发送验证码",
+              codeBtn:"发送验证码",
               // imgUrl:"api/system/kaptcha",
               show:false,
               msg:"",
