@@ -11,8 +11,9 @@
         <x-table  :cell-bordered="false" style="background-color:#fff;">
           <thead>
           <tr>
-            <th>申请周期</th>
+            <th>周期</th>
             <th>申请时间</th>
+            <th>还款时间</th>
             <th>状态</th>
             <th>申请额度</th>
           </tr>
@@ -20,7 +21,8 @@
           <tbody>
           <tr v-for='item in datas'>
             <td>{{item.loanDay}}天</td>
-            <td>{{item.submitDate}}</td>
+            <td>{{item.submitDate.slice(0,10)}}</td>
+            <td>{{item.billRepaymentTime?item.billRepaymentTime.substr(0,10):""}}</td>
             <td>{{item.status|statusFun}}</td>
             <td style='color: rgb(255, 144, 0)'>{{item.bill}}</td>
           </tr>
