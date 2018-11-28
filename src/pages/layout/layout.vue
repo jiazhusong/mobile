@@ -81,11 +81,11 @@
               msg:"",
               maxHei:"",
               list:[
-              //   {
-              //   url: 'javascript:',
-              //   img: '../../../static/swiper1.jpg',
-              //   title: ''
-              // },
+                {
+                url: 'javascript:',
+                img: '../../../static/swiper1.png',
+                title: ''
+              },
                 {
                 url: 'javascript:',
                 img: '../../../static/swiper4.png',
