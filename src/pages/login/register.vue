@@ -20,10 +20,10 @@
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
           <i slot="right" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-chakanmima"  @click='passwordAginTypeFun'></i>
         </x-input>
-        <x-input  title="验证码" placeholder='请输入验证码' v-model="verificationCode " :show-clear=false ref='verificationCode' required>
-          <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>
-          <img slot="right-full-height" :src="imgUrl" @click='imgFun'>
-        </x-input>
+        <!--<x-input  title="验证码" placeholder='请输入验证码' v-model="verificationCode " :show-clear=false ref='verificationCode' required>-->
+          <!--<i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>-->
+          <!--<img slot="right-full-height" :src="imgUrl" @click='imgFun'>-->
+        <!--</x-input>-->
         <x-input   placeholder='请输入手机验证码' title="发送验证码" class="weui-vcode" v-model='phoneCode' :show-clear=false ref='phoneCode' required>
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont  icon-yanzhengma1"  ></i>
           <x-button slot="right" type="primary"  :disabled='codeBtn!="发送验证码"'  @click.native='sendCodeFun' mini >{{codeBtn}}</x-button>
@@ -65,10 +65,10 @@
               phoneNum:"",
               password:"",
               passwordAgin:"",
-              verificationCode:"",
+              // verificationCode:"",
               phoneCode:"",
-              codeBtn:"发送验证码",
-              imgUrl:"api/system/kaptcha",
+              // codeBtn:"发送验证码",
+              // imgUrl:"api/system/kaptcha",
               show:false,
               msg:"",
               passwordAginType:"password",
@@ -83,10 +83,10 @@
 
         },
         methods: {
-          imgFun(){
-            let vm=this;
-            vm.imgUrl="api/system/kaptcha"+"?"+Math.random()
-          },
+          // imgFun(){
+          //   let vm=this;
+          //   vm.imgUrl="api/system/kaptcha"+"?"+Math.random()
+          // },
           passwordTypeChange(){
             let vm=this;
             vm.passwordType=vm.passwordType=="password"?"text":"password"
@@ -113,11 +113,11 @@
               vm.show=true;
               return false
             }
-            if(!vm.$refs["verificationCode"].valid){
-              vm.msg+="验证码";
-              vm.show=true;
-              return false
-            }
+            // if(!vm.$refs["verificationCode"].valid){
+            //   vm.msg+="验证码";
+            //   vm.show=true;
+            //   return false
+            // }
             if(!vm.$refs["phoneCode"].valid){
               vm.msg+="手机验证码";
               vm.show=true;
@@ -130,7 +130,7 @@
             }
             if(vm.password===vm.passwordAgin){
               vm.$api.post("api/system/register",{
-                kaptcha: vm.verificationCode,
+                // kaptcha: vm.verificationCode,
                 tel: vm.phoneNum,
                 telCode: vm.phoneCode,
                 password:vm.password
@@ -156,6 +156,7 @@
           sendCodeFun(){
             let vm=this;
             if(vm.$refs["phoneNum"].valid){
+              vm.codeBtn="";
               vm.$api.get("api/system/"+vm.phoneNum+"/code","",function ({data}) {
                 if(data.code==20){
                   let n=60;
@@ -168,6 +169,7 @@
                     }
                   },1000)
                 }else {
+                  vm.codeBtn="发送验证码";
                   vm.showPositionValue=true;
                   vm.showMsg=data.message
                 }

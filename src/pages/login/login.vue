@@ -11,10 +11,10 @@
           <x-input title="密码：" type='password' placeholder='请输入密码' v-model="password" ref='password' required>
             <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-mima"  ></i>
           </x-input>
-          <x-input  title="验证码" placeholder='请输入验证码' v-model="num" ref='num' required>
-            <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>
-            <img slot="right-full-height" @click='imgClick' :src="imgUrl">
-          </x-input>
+          <!--<x-input  title="验证码" placeholder='请输入验证码' v-model="num" ref='num' required>-->
+            <!--<i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>-->
+            <!--<img slot="right-full-height" @click='imgClick' :src="imgUrl">-->
+          <!--</x-input>-->
          <div style='height:1px;background: #D9D9D9; '></div>
           <x-button style='margin-top: 20px;' type="primary" @click.native='loginFun'>登录</x-button>
         </group>
@@ -50,7 +50,7 @@
             useName:"",
             password:"",
             num:"",
-            imgUrl:"api/system/kaptcha",
+            // imgUrl:"api/system/kaptcha",
             show:false,
             msg:"",
             showPositionValue:false,
@@ -69,9 +69,9 @@
       },
       methods:{
         // http://39.105.80.106:9000/swagger-ui.html
-        imgClick(){
-          this.imgUrl="api/system/kaptcha?"+Math.random()
-        },
+        // imgClick(){
+        //   this.imgUrl="api/system/kaptcha?"+Math.random()
+        // },
           loginFun(){
           let vm=this;
           // vm.$router.push({
@@ -87,13 +87,13 @@
               vm.showMsg="请输入正确的密码";
               return false;
             }
-            if(!vm.$refs["num"].valid){
-              vm.showPositionValue=true;
-              vm.showMsg="请输入正确的验证码";
-              return false;
-            }
+            // if(!vm.$refs["num"].valid){
+            //   vm.showPositionValue=true;
+            //   vm.showMsg="请输入正确的验证码";
+            //   return false;
+            // }
             vm.$api.post("api/system/login",{
-              kaptcha:vm.num,
+              // kaptcha:vm.num,
               tel:vm.useName,
              password:vm.password
             },function ({data}) {

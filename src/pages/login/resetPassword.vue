@@ -16,10 +16,10 @@
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"  class="iconfont icon-zhenshixingming"  ></i>
         </x-input>
 
-        <x-input  placeholder='请输入验证码' required ref='verificationCode' v-model="verificationCode">
-          <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>
-          <img slot="right-full-height" @click='imgFun' :src="imgUrl">
-        </x-input>
+        <!--<x-input  placeholder='请输入验证码' required ref='verificationCode' v-model="verificationCode">-->
+          <!--<i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont icon-yanzhengma"  ></i>-->
+          <!--<img slot="right-full-height" @click='imgFun' :src="imgUrl">-->
+        <!--</x-input>-->
         <x-input placeholder='请输入短信验证码' required ref='phoneCode' v-model="phoneCode" phoneCode class="weui-vcode">
           <i slot="label" style="padding-right:10px;display:block;width: 24px;height:24px"   class="iconfont  icon-yanzhengma2"  ></i>
           <x-button slot="right" type="primary" :disabled='codeBtn!="发送验证码"'  @click.native='sendCodeFun' mini >{{codeBtn}}</x-button>
@@ -86,10 +86,10 @@
         mounted() {
         },
         methods: {
-          imgFun(){
-            let vm=this;
-            vm.imgUrl="api/system/kaptcha"+"?"+Math.random()
-          },
+          // imgFun(){
+          //   let vm=this;
+          //   vm.imgUrl="api/system/kaptcha"+"?"+Math.random()
+          // },
           passwordTypeChange(){
             let vm=this;
             vm.passwordType=vm.passwordType=="password"?"text":"password"
@@ -113,10 +113,10 @@
               vm.msg+="确认密码，";
               vm.show=true;
             }
-            if(!vm.$refs["verificationCode"].valid){
-              vm.msg+="验证码，";
-              vm.show=true;
-            }
+            // if(!vm.$refs["verificationCode"].valid){
+            //   vm.msg+="验证码，";
+            //   vm.show=true;
+            // }
             if(!vm.$refs["phoneCode"].valid){
               vm.msg+="手机验证码，";
               vm.show=true;
@@ -126,7 +126,7 @@
             }else {
               if(vm.password===vm.passwordAgin){
                 vm.$api.put("api/user/info",{
-                  kaptcha: vm.verificationCode,
+                  // kaptcha: vm.verificationCode,
                   realName: vm.useName,
                   tel: vm.phoneNum,
                   telCode: vm.phoneCode,
@@ -164,6 +164,7 @@
                 }else {
                   vm.msg=data.message;
                   vm.show=true;
+                  vm.codeBtn="发送验证码";
                 }
               })
             }else {
