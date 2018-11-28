@@ -83,7 +83,7 @@
               list:[
                 {
                 url: 'javascript:',
-                img: '../../../static/swiper1.png',
+                img: '../../../static/time1.jpg',
                 title: ''
               },
                 {
