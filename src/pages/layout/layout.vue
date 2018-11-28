@@ -80,11 +80,13 @@
               show:false,
               msg:"",
               maxHei:"",
-              list:[{
-                url: 'javascript:',
-                img: '../../../static/swiper1.jpg',
-                title: ''
-              }, {
+              list:[
+              //   {
+              //   url: 'javascript:',
+              //   img: '../../../static/swiper1.jpg',
+              //   title: ''
+              // },
+                {
                 url: 'javascript:',
                 img: '../../../static/swiper4.png',
                 title: '',
